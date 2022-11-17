@@ -18,16 +18,31 @@ class CalculadoraDeImpostosTest {
     }
 
     @Test
-    void calcular() {
+    void calcularICMS() {
         // Cenário
         Orcamento orcamento = new Orcamento(new BigDecimal("100"));
         BigDecimal impostoEsperado = new BigDecimal("10.0");
 
         // Ação
-        BigDecimal impostoCalculado =  calculadoraDeImpostos.calcular(orcamento, TipoImposto.ICMS);
+        BigDecimal impostoCalculado =  calculadoraDeImpostos.calcular(orcamento, new ICMS());
 
         // Verificações
         assertEquals(impostoEsperado, impostoCalculado);
 
     }
+
+    @Test
+    void calcularISS() {
+        // Cenário
+        Orcamento orcamento = new Orcamento(new BigDecimal("100"));
+        BigDecimal impostoEsperado = new BigDecimal("6.00");
+
+        // Ação
+        BigDecimal impostoCalculado =  calculadoraDeImpostos.calcular(orcamento, new ISS());
+
+        // Verificações
+        assertEquals(impostoEsperado, impostoCalculado);
+
+    }
+
 }
